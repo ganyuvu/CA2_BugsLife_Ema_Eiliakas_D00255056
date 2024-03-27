@@ -1,0 +1,3 @@
+C:/Users/emaei/CLionProjects/CA2_BugsLife_Ema_Eiliakas_D00255056/cmake-build-debug/CMakeFiles/CA2_BugsLife_Ema_Eiliakas_D00255056.dir
+C:/Users/emaei/CLionProjects/CA2_BugsLife_Ema_Eiliakas_D00255056/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/emaei/CLionProjects/CA2_BugsLife_Ema_Eiliakas_D00255056/cmake-build-debug/CMakeFiles/rebuild_cache.dir
