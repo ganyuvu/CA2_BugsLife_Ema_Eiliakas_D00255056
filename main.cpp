@@ -46,6 +46,54 @@ public:
                 , type, id, position.first, position.second,directionToString().c_str(), size, (isAlive ? "Yes" : "No"));
 
     }
+
+    //getter for bug position
+    const pair<int, int> &getPosition() const {
+        return position;
+    }
+
+    //getter for bug type
+    char getType() const {
+        return type;
+    }
+};
+
+class Board {
+protected:
+    vector<vector<char>> grid; //vector for creating grid
+
+public:
+    //creating the 10x10 grid
+    Board(){
+        grid.assign(10, vector<char>(10, '*'));
+    }
+
+    //referencing Bug class, directly working with the original object
+    void addBugsToGrid(const Bug& bug){
+        pair<int, int> position = bug.getPosition(); //getting the bugs position
+
+        //checking if the bug is inbound of the grid
+        if (position.first >= 0 && position.first < grid.size() &&
+            position.second >= 0 && position.second < grid[0].size()) {
+            //adding bug to the grid and replaces the * with the bug type (C/H)
+            grid[position.first][position.second] = bug.getType();
+        }
+        else{
+            cout << "Position of bug not inbound" << endl;
+        }
+    };
+
+    void displayGrid(){
+        for(int i = 0; i < 10; ++i)//prints out the row
+        {
+            for(int j = 0; j < 10; ++j)//prints out the columns
+            {
+                cout << grid[i][j] << "  "; // outputs the entire grid with spacing between each char
+            }
+            cout << endl;//moves to next line
+        }
+    }
+
 };
 
 // Function to convert integer direction to Direction enum
@@ -66,6 +114,7 @@ Direction intToDirection(int value) {
 
 int main() {
     vector<Bug> bugs;//vector to hold bugs
+    Board board;
     int input;//users input
 
     //Menu
@@ -88,18 +137,20 @@ int main() {
     }
 
     string line;
+    //loop for reading the file
     while(getline(file,line)){
         vector<string> tokens;
         stringstream ss(line);
         string token;
 
+        //loop to store tokens in vector using a delimiter
         while(getline(ss, token, ';')){
             tokens.push_back(token);
         }
 
         //assigning the tokens to variables
         char type = tokens[0][0]; //Assuming type is the first token and a single character
-        int id = stoi(tokens[1]); //Converting string to integer
+        int id = stoi(tokens[1]);//Converting string to integer
         pair<int, int> position = make_pair(stoi(tokens[2]), stoi(tokens[3])); //Converting strings to integers and creating pair
         Direction direction = intToDirection(stoi(tokens[4])); //Converting string to integer and then to Direction enum
         int size = stoi(tokens[5]); //Converting string to integer
@@ -113,8 +164,16 @@ int main() {
     // Close the file
     file.close();
 
+    //adds bug to the board
+    for(const auto& bug: bugs)//goes through the bug vector and adds them to the board
+    {
+        board.addBugsToGrid(bug);
+    }
+
     switch (input) {
         case 1:
+            cout << "\n==========BUG BOARD=========\n";
+            board.displayGrid();
             break;
         case 2:
             printf("======================================================\n");
