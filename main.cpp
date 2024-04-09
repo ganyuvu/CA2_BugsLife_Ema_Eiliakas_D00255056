@@ -56,6 +56,11 @@ public:
     char getType() const {
         return type;
     }
+
+    //getter for bug id
+    int getId() const {
+        return id;
+    }
 };
 
 class Board {
@@ -91,6 +96,34 @@ public:
                 cout << grid[i][j] << "  "; // outputs the entire grid with spacing between each char
             }
             cout << endl;//moves to next line
+        }
+    }
+
+    void findBugByID(const vector<Bug>& bugs){
+        int idInput;
+
+        cout << "Enter bug ID to locate it: ";
+        cin >> idInput; //gets id from user and stores it in idInput
+
+        bool bugFound = false;
+
+        for (const Bug& bug : bugs) { //loops through bugs
+            //checks if the bug id matches the users input
+            if(bug.getId() == idInput){
+                cout << "Bug found." << endl;
+
+                printf("======================================================\n");
+                printf("%-8s %-4s %-10s %-12s %-8s %6s\n"
+                        , "Type", "ID", "Position", "Direction", "Size", "Alive");
+                printf("======================================================\n");
+
+                bug.display();
+                bugFound = true;
+                break;
+            }
+        }
+        if(!bugFound){
+            cout << "Bug not found.";
         }
     }
 
@@ -186,6 +219,7 @@ int main() {
             }
             break;
         case 3:
+            board.findBugByID(bugs); //calling method to find a specific bug out of all bugs
             break;
         case 4:
             break;
