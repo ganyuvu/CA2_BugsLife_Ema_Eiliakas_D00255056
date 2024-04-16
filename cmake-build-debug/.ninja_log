@@ -1,0 +1,8 @@
+# ninja log v5
+3	868	7343046808482019	CMakeFiles/CA2_BugsLife_Ema_Eiliakas_D00255056.dir/main.cpp.obj	d7b6df2ae39a4b78
+869	1037	7343046810209004	CA2_BugsLife_Ema_Eiliakas_D00255056.exe	331c38fa3f22a397
+68	271	7349772557434785	CMakeFiles/CA2_BugsLife_Ema_Eiliakas_D00255056.dir/Direction.cpp.obj	90cc65aeb089540a
+57	760	7349772562312087	CMakeFiles/CA2_BugsLife_Ema_Eiliakas_D00255056.dir/Bug.cpp.obj	f87ac518bc8b7926
+62	803	7349772562746787	CMakeFiles/CA2_BugsLife_Ema_Eiliakas_D00255056.dir/Board.cpp.obj	e444f01e86d78ac0
+23	1171	7349772566419520	CMakeFiles/CA2_BugsLife_Ema_Eiliakas_D00255056.dir/main.cpp.obj	d7b6df2ae39a4b78
+1172	1555	7349772570219486	CA2_BugsLife_Ema_Eiliakas_D00255056.exe	3ac9879c01db9114
