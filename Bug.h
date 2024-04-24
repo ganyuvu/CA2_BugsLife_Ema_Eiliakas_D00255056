@@ -22,11 +22,10 @@ protected:
     int size;                           //bugs size
     bool isAlive;                       //is the bug alive or not
     list<pair<int,int>> path;           //path taken by bug
+    bool isWayBlocked();
 
 public:
-
     virtual void move() = 0;
-    virtual ~Bug();
 
     // Constructor to initialize variables
     Bug(char _type, int _id, pair<int,int> _position, Direction _direction, int _size, bool _isAlive, list<pair<int,int>> _path);
@@ -55,9 +54,11 @@ public:
 
     void setIsAlive(bool isAlive);
 
-    const list<pair<int, int>> &getPath() const;
-
     void setPath(const list<pair<int, int>> &path);
+
+    virtual ~Bug();
+
+    list<pair<int, int>> &getPath();
 };
 
 

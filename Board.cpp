@@ -29,7 +29,7 @@ void Board::displayGrid(){
     }
 }
 
-void Board::findBugByID(const vector<Bug>& bugs){
+void Board::findBugByID(const vector<Bug*> & bug_vector){
     int idInput;
 
     cout << "Enter bug ID to locate it: ";
@@ -37,9 +37,9 @@ void Board::findBugByID(const vector<Bug>& bugs){
 
     bool bugFound = false;
 
-    for (const Bug& bug : bugs) { //loops through bugs
+    for(const Bug* bug : bug_vector){ //loops through bugs
         //checks if the bug id matches the users input
-        if(bug.getId() == idInput){
+        if(bug->getId() == idInput){
             cout << "Bug found." << endl;
 
             printf("======================================================\n");
@@ -47,13 +47,13 @@ void Board::findBugByID(const vector<Bug>& bugs){
                     , "Type", "ID", "Position", "Direction", "Size", "Alive");
             printf("======================================================\n");
 
-            bug.display();
+            bug->display();
             bugFound = true;
             break;
         }
     }
     if(!bugFound){
-        cout << "Bug not found.";
+        cout << "Bug with" << idInput << "not found" << endl;
     }
 }
 

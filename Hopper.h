@@ -7,16 +7,19 @@
 
 #include "Bug.h"
 
+
 class Hopper : public Bug {
 
 private:
-
 int hopLength;
 
 public:
     void move() override;
 
     ~Hopper();
+
+    Hopper(char type, int id, const pair<int, int> &position, Direction direction, int size, bool isAlive,
+           const list<pair<int, int>> &path, int hopLength);
 
 };
 

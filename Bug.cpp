@@ -1,9 +1,5 @@
 #include "Bug.h"
 
-
-Bug::~Bug() {
-
-}
 char Bug::getType() const {
     return type;
 }
@@ -44,7 +40,7 @@ void Bug::setIsAlive(bool isAlive) {
     Bug::isAlive = isAlive;
 }
 
-const list<pair<int, int>> &Bug::getPath() const {
+list<pair<int, int>>& Bug::getPath() {
     return path;
 }
 
@@ -76,4 +72,25 @@ string Bug::directionToString() const {
             return "Unknown";
     }
 }
+
+bool Bug::isWayBlocked() {
+    switch (direction) {
+        case Direction::North:
+            return (position.second == 0);          //y axis = 0 the bug is at the top edge
+        case Direction::East:
+            return (position.first == 9);           //x axis = 9 the bug is at the right edge
+        case Direction::South:
+            return (position.second == 9);          //y axis = 9 the bug is at the bottom edge
+        case Direction::West:
+            return (position.first == 0);           //x axis = 0 the bug is at the lef edge
+        default:
+            return true; //will return true, meaning the path is blocked
+    }
+}
+
+Bug::~Bug() {
+    cout << "Destructor called.\n";
+}
+
+
 
