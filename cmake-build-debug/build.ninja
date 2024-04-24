@@ -67,8 +67,14 @@ build CMakeFiles/CA2_BugsLife_Ema_Eiliakas_D00255056.dir/Board.cpp.obj: CXX_COMP
   OBJECT_DIR = CMakeFiles\CA2_BugsLife_Ema_Eiliakas_D00255056.dir
   OBJECT_FILE_DIR = CMakeFiles\CA2_BugsLife_Ema_Eiliakas_D00255056.dir
 
-build CMakeFiles/CA2_BugsLife_Ema_Eiliakas_D00255056.dir/Direction.cpp.obj: CXX_COMPILER__CA2_BugsLife_Ema_Eiliakas_D00255056_unscanned_Debug C$:/Users/emaei/CLionProjects/CA2_BugsLife_Ema_Eiliakas_D00255056/Direction.cpp || cmake_object_order_depends_target_CA2_BugsLife_Ema_Eiliakas_D00255056
-  DEP_FILE = CMakeFiles\CA2_BugsLife_Ema_Eiliakas_D00255056.dir\Direction.cpp.obj.d
+build CMakeFiles/CA2_BugsLife_Ema_Eiliakas_D00255056.dir/Crawler.cpp.obj: CXX_COMPILER__CA2_BugsLife_Ema_Eiliakas_D00255056_unscanned_Debug C$:/Users/emaei/CLionProjects/CA2_BugsLife_Ema_Eiliakas_D00255056/Crawler.cpp || cmake_object_order_depends_target_CA2_BugsLife_Ema_Eiliakas_D00255056
+  DEP_FILE = CMakeFiles\CA2_BugsLife_Ema_Eiliakas_D00255056.dir\Crawler.cpp.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\CA2_BugsLife_Ema_Eiliakas_D00255056.dir
+  OBJECT_FILE_DIR = CMakeFiles\CA2_BugsLife_Ema_Eiliakas_D00255056.dir
+
+build CMakeFiles/CA2_BugsLife_Ema_Eiliakas_D00255056.dir/Hopper.cpp.obj: CXX_COMPILER__CA2_BugsLife_Ema_Eiliakas_D00255056_unscanned_Debug C$:/Users/emaei/CLionProjects/CA2_BugsLife_Ema_Eiliakas_D00255056/Hopper.cpp || cmake_object_order_depends_target_CA2_BugsLife_Ema_Eiliakas_D00255056
+  DEP_FILE = CMakeFiles\CA2_BugsLife_Ema_Eiliakas_D00255056.dir\Hopper.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\CA2_BugsLife_Ema_Eiliakas_D00255056.dir
   OBJECT_FILE_DIR = CMakeFiles\CA2_BugsLife_Ema_Eiliakas_D00255056.dir
@@ -81,7 +87,7 @@ build CMakeFiles/CA2_BugsLife_Ema_Eiliakas_D00255056.dir/Direction.cpp.obj: CXX_
 #############################################
 # Link the executable CA2_BugsLife_Ema_Eiliakas_D00255056.exe
 
-build CA2_BugsLife_Ema_Eiliakas_D00255056.exe: CXX_EXECUTABLE_LINKER__CA2_BugsLife_Ema_Eiliakas_D00255056_Debug CMakeFiles/CA2_BugsLife_Ema_Eiliakas_D00255056.dir/main.cpp.obj CMakeFiles/CA2_BugsLife_Ema_Eiliakas_D00255056.dir/Bug.cpp.obj CMakeFiles/CA2_BugsLife_Ema_Eiliakas_D00255056.dir/Board.cpp.obj CMakeFiles/CA2_BugsLife_Ema_Eiliakas_D00255056.dir/Direction.cpp.obj
+build CA2_BugsLife_Ema_Eiliakas_D00255056.exe: CXX_EXECUTABLE_LINKER__CA2_BugsLife_Ema_Eiliakas_D00255056_Debug CMakeFiles/CA2_BugsLife_Ema_Eiliakas_D00255056.dir/main.cpp.obj CMakeFiles/CA2_BugsLife_Ema_Eiliakas_D00255056.dir/Bug.cpp.obj CMakeFiles/CA2_BugsLife_Ema_Eiliakas_D00255056.dir/Board.cpp.obj CMakeFiles/CA2_BugsLife_Ema_Eiliakas_D00255056.dir/Crawler.cpp.obj CMakeFiles/CA2_BugsLife_Ema_Eiliakas_D00255056.dir/Hopper.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\CA2_BugsLife_Ema_Eiliakas_D00255056.dir

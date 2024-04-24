@@ -7,75 +7,57 @@
 #include <list>
 #include <utility>
 #include <vector>
-#include "Direction.h"
 
 using namespace std;
+
+enum Direction{North,East,South,West};
 
 class Bug {
 
 protected:
-    char type;//the bugs type (H = Hopper, C = Crawler)
-    int id;//bugs id
-    pair<int,int> position;//position of bug
-    Direction direction;//direction the bug is facing
-    int size;//bugs size
-    bool isAlive;//is the bug alive or not
-    list<pair<int,int>> path;//path taken by bug
+    char type;                          //the bugs type (H = Hopper, C = Crawler)
+    int id;                             //bugs id
+    pair<int,int> position;             //position of bug
+    Direction direction;                //direction the bug is facing
+    int size;                           //bugs size
+    bool isAlive;                       //is the bug alive or not
+    list<pair<int,int>> path;           //path taken by bug
 
 public:
+
+    virtual void move() = 0;
+    virtual ~Bug();
+
     // Constructor to initialize variables
-    Bug(char _type, int _id, pair<int,int> _position, Direction _direction, int _size, bool _isAlive, list<pair<int,int>> _path) :
-            type(_type), id(_id), position(_position), direction(_direction), size(_size), isAlive(_isAlive), path(_path) {}
+    Bug(char _type, int _id, pair<int,int> _position, Direction _direction, int _size, bool _isAlive, list<pair<int,int>> _path);
 
-    //converts the enum into a corresponding string
-    string directionToString() const {
-        switch (direction) {
-            case Direction::North:
-                return "North";
-            case Direction::East:
-                return "East";
-            case Direction::South:
-                return "South";
-            case Direction::West:
-                return "West";
-            default:
-                return "Unknown";
-        }
-    }
-
+    string directionToString() const;
     //method for displaying all the bugs info
-    void display() const {
-        printf("%-8c %-4d (%-2d,%-2d) %10s %7d %10s\n"
-                , type, id, position.first, position.second,directionToString().c_str(), size, (isAlive ? "Yes" : "No"));
-    }
+    void display() const;
 
-    char getType() const {
-        return type;
-    }
+    char getType() const;
 
-    int getId() const {
-        return id;
-    }
+    int getId() const;
 
-    const pair<int, int> &getPosition() const {
-        return position;
-    }
+    const pair<int, int> &getPosition() const;
 
-    Direction getDirection() const {
-        return direction;
-    }
+    void setPosition(const pair<int, int> &position);
 
-    int getSize() const {
-        return size;
-    }
+    Direction getDirection() const;
 
-    bool isAlive1() const {
-        return isAlive;
-    }
+    void setDirection(Direction direction);
 
-    const list<pair<int, int>> &getPath() const {
-        return path;
-    }
+    int getSize() const;
+
+    void setSize(int size);
+
+    bool isAlive1() const;
+
+    void setIsAlive(bool isAlive);
+
+    const list<pair<int, int>> &getPath() const;
+
+    void setPath(const list<pair<int, int>> &path);
 };
 
 

@@ -29,6 +29,8 @@ int main() {
     vector<Bug> bugs;//vector to hold bugs
     Board board;
     int input;//users input
+    bool running = true;
+
 
     //Menu
     cout << "====Menu====" << endl;

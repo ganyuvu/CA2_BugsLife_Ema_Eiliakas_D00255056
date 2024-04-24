@@ -8,5 +8,7 @@ add_executable(CA2_BugsLife_Ema_Eiliakas_D00255056 main.cpp
         Bug.h
         Board.cpp
         Board.h
-        Direction.cpp
-        Direction.h)
+        Crawler.cpp
+        Crawler.h
+        Hopper.cpp
+        Hopper.h)
