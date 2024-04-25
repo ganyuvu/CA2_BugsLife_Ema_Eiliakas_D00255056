@@ -6,6 +6,11 @@ Hopper::Hopper(char type, int id, const pair<int, int> &position, Direction dire
 
     this-> type = type;
     this->id = id;
+    this-> hopLength = hopLength;
+}
+
+int Hopper::getHopLength() const {
+    return hopLength;
 }
 
 void Hopper::move() {
@@ -46,6 +51,7 @@ void Hopper::move() {
 Hopper::~Hopper() {
     cout << "Destructor called.\n";
 }
+
 
 
 

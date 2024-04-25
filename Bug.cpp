@@ -1,5 +1,9 @@
 #include "Bug.h"
 
+Bug::Bug(char _type, int _id, pair<int, int> _position, Direction _direction, int _size, bool _isAlive,
+         list<pair<int, int>> _path)  :
+        type(_type), id(_id), position(_position), direction(_direction), size(_size), isAlive(_isAlive), path(_path) {}
+
 char Bug::getType() const {
     return type;
 }
@@ -47,15 +51,6 @@ list<pair<int, int>>& Bug::getPath() {
 void Bug::setPath(const list<pair<int, int>> &path) {
     Bug::path = path;
 }
-
-void Bug::display() const  {
-    printf("%-8c %-4d (%-2d,%-2d) %10s %7d %10s\n"
-            , type, id, position.first, position.second,directionToString().c_str(), size, (isAlive ? "Yes" : "No"));
-}
-
-Bug::Bug(char _type, int _id, pair<int, int> _position, Direction _direction, int _size, bool _isAlive,
-         list<pair<int, int>> _path)  :
-        type(_type), id(_id), position(_position), direction(_direction), size(_size), isAlive(_isAlive), path(_path) {}
 
 //converts the enum into a corresponding string
 string Bug::directionToString() const {

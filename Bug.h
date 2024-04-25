@@ -31,8 +31,6 @@ public:
     Bug(char _type, int _id, pair<int,int> _position, Direction _direction, int _size, bool _isAlive, list<pair<int,int>> _path);
 
     string directionToString() const;
-    //method for displaying all the bugs info
-    void display() const;
 
     char getType() const;
 
@@ -59,6 +57,8 @@ public:
     virtual ~Bug();
 
     list<pair<int, int>> &getPath();
+
+
 };
 
 

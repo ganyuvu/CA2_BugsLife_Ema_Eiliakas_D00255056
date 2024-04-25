@@ -18,13 +18,22 @@ using namespace std;
 class Board {
 protected:
     vector<vector<char>> grid; //vector for creating grid
+    vector<Bug*> bug_vector; // vector that points at bug
 
 public:
     Board();
-    //referencing Bug class, directly working with the original object
     void addBugsToGrid(const Bug& bug);
     void displayGrid();
+    void displayAllBugs();
     void findBugByID(const vector<Bug *> &bug_vector);
+    void tapBugBoard(const vector<Bug*> & bug_vector);
+    Direction intToDirection(int value);
+    void getBugsFromFile(const string &fileName);
+
+    // method to get the bug vector (using it in main)
+    vector<Bug*>& getBugVector() {
+        return bug_vector;
+    }
 };
 
 #endif //CA2_BUGSLIFE_EMA_EILIAKAS_D00255056_BOARD_H
