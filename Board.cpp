@@ -8,6 +8,7 @@
 #include "Bug.h"
 #include "Crawler.h"
 #include "Hopper.h"
+#include "Beatle.h"
 
 using namespace std;
 
@@ -61,6 +62,16 @@ Board::Board() {
                     Hopper* hopper = new Hopper(type, id, position, direction, size, isAlive, list<pair<int,int>>(), hopLength);
                     bug_vector.push_back(hopper);
                 }
+                else if (type == 'B') {
+                    int id = stoi(tokens[1]); // Converting string to integer
+                    pair<int, int> position = make_pair(stoi(tokens[2]), stoi(tokens[3])); // Converting strings to integers and creating pair
+                    Direction direction = intToDirection(stoi(tokens[4])); // Converting string to integer and then to Direction enum
+                    int size = stoi(tokens[5]); // Converting string to integer
+                    bool isAlive = true;
+
+                    Beatle* beatle = new Beatle(type, id, position, direction, size, isAlive, list<pair<int,int>>());
+                    bug_vector.push_back(beatle);
+                }
             }
             //catch error
             catch (const std::exception& e) {
@@ -70,38 +81,38 @@ Board::Board() {
 
         file.close();
 
-        // adds bugs to the grid
-        // goes through the bug vector and adds them to the board
-        for (const auto& bug : bug_vector) {
-            addBugsToGrid(*bug);
-        }
+//        // adds bugs to the grid
+//        // goes through the bug vector and adds them to the board
+//        for (const auto& bug : bug_vector) {
+//            addBugsToGrid(*bug);
+//        }
     }
 
-//referencing Bug class, directly working with the original object
-void Board::addBugsToGrid(const Bug& bug){
-    pair<int, int> position = bug.getPosition(); //getting the bugs position
-
-    //checking if the bug is inbound of the grid
-    if (position.first >= 0 && position.first < grid.size() &&
-        position.second >= 0 && position.second < grid[0].size()) {
-        //adding bug to the grid and replaces the * with the bug type (C/H)
-        grid[position.first][position.second] = bug.getType();
-    }
-    else{
-        cout << "Position of bug not inbound" << endl;
-    }
-}
-
-void Board::displayGrid(){
-    for(int i = 0; i < 10; ++i)//prints out the row
-    {
-        for(int j = 0; j < 10; ++j)//prints out the columns
-        {
-            cout << grid[i][j] << "  "; // outputs the entire grid with spacing between each char
-        }
-        cout << endl;//moves to next line
-    }
-}
+////referencing Bug class, directly working with the original object
+//void Board::addBugsToGrid(const Bug& bug){
+//    pair<int, int> position = bug.getPosition(); //getting the bugs position
+//
+//    //checking if the bug is inbound of the grid
+//    if (position.first >= 0 && position.first < grid.size() &&
+//        position.second >= 0 && position.second < grid[0].size()) {
+//        //adding bug to the grid and replaces the * with the bug type (C/H)
+//        grid[position.first][position.second] = bug.getType();
+//    }
+//    else{
+//        cout << "Position of bug not inbound" << endl;
+//    }
+//}
+//
+//void Board::displayGrid(){
+//    for(int i = 0; i < 10; ++i)//prints out the row
+//    {
+//        for(int j = 0; j < 10; ++j)//prints out the columns
+//        {
+//            cout << grid[i][j] << "  "; // outputs the entire grid with spacing between each char
+//        }
+//        cout << endl;//moves to next line
+//    }
+//}
 
 void Board::findBugByID(const vector<Bug*> & bug_vector) {
     int idInput;
@@ -237,5 +248,20 @@ void Board::displayLifeHistory() {
         // Then we finally display if the bug is alive or not
         cout << ", " << (bug->isAlive1() ? "Alive" : "Dead") << endl;
     }
+}
+
+void Board::displayAllCells() {
+
+    //displaying all cells in grid
+    for (int i = 0; i < grid.size(); ++i) {
+
+        for (int j = 0; j < grid[i].size(); ++j) {
+            pair<int, int> cell(i, j);
+            cout << "\n(" << cell.first << "," << cell.second << "): ";
+        }
+
+    }
+
+    //need to iterate through bug_vector and compare bug positions to cells
 }
 

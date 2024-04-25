@@ -11,4 +11,7 @@ add_executable(CA2_BugsLife_Ema_Eiliakas_D00255056 main.cpp
         Crawler.cpp
         Crawler.h
         Hopper.cpp
-        Hopper.h)
+        Hopper.h
+        Beatle.cpp
+        Beatle.h
+)

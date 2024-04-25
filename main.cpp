@@ -32,8 +32,9 @@ int main() {
             case 1:
                 board.getBugsFromFile("Bugs.txt");
 
-                cout << "\n==========BUG BOARD=========\n";
-                board.displayGrid();
+                //cout << "\n==========BUG BOARD=========\n";
+                //board.displayGrid();
+                cout << "Board initialized";
                 boardInitialized = true;
                 break;
             case 2:
@@ -50,7 +51,7 @@ int main() {
                 board.displayLifeHistory();
                 break;
             case 6:
-
+                board.displayAllCells();
                 break;
             case 7:
                 break;
