@@ -36,8 +36,8 @@ Board::Board() {
                 tokens.push_back(token);
             }
 
-            // assigning the tokens to variables and pushing them it into the vector
-            char type = tokens[0][0]; // Assuming type is the first token and a single character
+            // assigning the tokens to variables and pushing them into the vector
+            char type = tokens[0][0]; // Assuming type is the first token [0][0] will turn string to char
 
             try {
                 if (type == 'C') {
@@ -207,5 +207,35 @@ void Board::displayAllBugs() {
 
 }
 
+//to do: implement display for bug getting eaten
+//to do:  write to a file
+void Board::displayLifeHistory() {
+    cout << "====Bug Life History====" << endl;
 
+    //loops through all bugs
+    for (const auto& bug : bug_vector) {
+
+        //displaying bug ID buy type and path
+        cout << bug->getId() << " " << bug->getType() << " Path: ";
+        const list<pair<int, int>>& path = bug->getPath(); //displays the bugs path
+
+        //if path list isnt empty we loop through it using an iterator that will point at each position
+        if (!path.empty()) {
+            for (auto i = path.begin(); i != path.end(); ++i) {
+
+                //making sure comma is only printed after the first path
+                if (i != path.begin()) {
+                    cout << ",";
+                }
+                cout << "(" << i->first << "," << i->second << ")";
+            }
+        }
+        else {
+            cout << "No path taken";
+        }
+
+        // Then we finally display if the bug is alive or not
+        cout << ", " << (bug->isAlive1() ? "Alive" : "Dead") << endl;
+    }
+}
 

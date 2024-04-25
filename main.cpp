@@ -41,14 +41,16 @@ int main() {
                 board.displayAllBugs();
                 break;
             case 3:
-                board.findBugByID(board.getBugVector()); // calling methods from board, to find specific bug
+                board.findBugByID(board.getBugVector());
                 break;
             case 4:
-                board.tapBugBoard(board.getBugVector()); //calling method to move all bugs
+                board.tapBugBoard(board.getBugVector());
                 break;
             case 5:
+                board.displayLifeHistory();
                 break;
             case 6:
+
                 break;
             case 7:
                 break;
