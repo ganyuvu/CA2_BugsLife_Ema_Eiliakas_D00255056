@@ -32,9 +32,7 @@ int main() {
             case 1:
                 board.getBugsFromFile("Bugs.txt");
 
-                //cout << "\n==========BUG BOARD=========\n";
-                //board.displayGrid();
-                cout << "Board initialized";
+                cout << "\nBoard initialized";
                 boardInitialized = true;
                 break;
             case 2:

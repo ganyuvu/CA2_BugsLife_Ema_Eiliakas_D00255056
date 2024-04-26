@@ -17,13 +17,11 @@ using namespace std;
 
 class Board {
 protected:
-    vector<vector<char>> grid; //vector for creating grid
+    vector<vector<char>> grid; //vector for storing grid size
     vector<Bug*> bug_vector; // vector that points at bug
 
 public:
     Board();
-    //void addBugsToGrid(const Bug& bug);
-    //void displayGrid();
     void displayAllBugs();
     void findBugByID(const vector<Bug *> &bug_vector);
     void tapBugBoard(const vector<Bug*> & bug_vector);
@@ -33,13 +31,12 @@ public:
     void displayAllCells();
     void startFight();
     bool isGameOver();
+    void runSimulation();
 
     // method to get the bug vector (using it in main)
     vector<Bug*>& getBugVector() {
         return bug_vector;
     }
-
-    void runSimulation();
 };
 
 #endif //CA2_BUGSLIFE_EMA_EILIAKAS_D00255056_BOARD_H
