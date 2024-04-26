@@ -18,7 +18,7 @@ int main() {
         cout << "4. Shake Board" << endl;
         cout << "5. Display Life History" << endl;
         cout << "6. Display all Cells" << endl;
-        cout << "7. PLAY" << endl;
+        cout << "7. Play Simulation" << endl;
         cout << "8. Exit" << endl;
         cin >> input;
 
@@ -54,6 +54,7 @@ int main() {
                 board.displayAllCells();
                 break;
             case 7:
+                board.runSimulation();
                 break;
             case 8:
                 running = false; // Exit the loop

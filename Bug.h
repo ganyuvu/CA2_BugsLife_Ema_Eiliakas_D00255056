@@ -54,9 +54,12 @@ public:
 
     void setPath(const list<pair<int, int>> &path);
 
+    list<pair<int, int>> &getPath();
+
+    void fight(Bug* otherBug);
+
     virtual ~Bug();
 
-    list<pair<int, int>> &getPath();
 
 
 };

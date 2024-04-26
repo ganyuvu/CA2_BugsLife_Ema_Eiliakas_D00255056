@@ -31,11 +31,15 @@ public:
     void getBugsFromFile(const string &fileName);
     void displayLifeHistory();
     void displayAllCells();
+    void startFight();
+    bool isGameOver();
 
     // method to get the bug vector (using it in main)
     vector<Bug*>& getBugVector() {
         return bug_vector;
     }
+
+    void runSimulation();
 };
 
 #endif //CA2_BUGSLIFE_EMA_EILIAKAS_D00255056_BOARD_H

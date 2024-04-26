@@ -24,20 +24,28 @@ void Beatle::move() {
     if (rand() % 2 == 0) {
         switch (direction) {
             case Direction::North:
-                newPos.first--;
-                newPos.second--;
+                if (newPos.first > 0 && newPos.second > 0) { //keeping diagonal movement in bounds
+                    newPos.first--;
+                    newPos.second--;
+                }
                 break;
             case Direction::East:
-                newPos.first++;
-                newPos.second--;
+                if (newPos.first < 9 && newPos.second > 0) {
+                    newPos.first++;
+                    newPos.second--;
+                }
                 break;
             case Direction::South:
-                newPos.first++;
-                newPos.second++;
+                if (newPos.first < 9 && newPos.second < 9) {
+                    newPos.first++;
+                    newPos.second++;
+                }
                 break;
             case Direction::West:
-                newPos.first--;
-                newPos.second++;
+                if (newPos.first > 0 && newPos.second < 9) {
+                    newPos.first--;
+                    newPos.second++;
+                }
                 break;
             default:
                 break;

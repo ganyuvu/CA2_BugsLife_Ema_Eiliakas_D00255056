@@ -168,11 +168,26 @@ void Board::findBugByID(const vector<Bug*> & bug_vector) {
     }
 }
 
+void Board::startFight() {
+
+    //loops through bug vector
+    for (size_t i = 0; i < bug_vector.size(); ++i) {
+        // looping through bugs again, added +1 so it skips bug1
+        for (size_t j = i + 1; j < bug_vector.size(); ++j) {
+            bug_vector[i]->fight(bug_vector[j]); // start fight between bug 1 and 2
+        }
+    }
+}
+
 void Board::tapBugBoard(const vector<Bug *> &bug_vector) {
 //goes through each bug
     for (Bug* bug : bug_vector) {
-        bug->move(); // calls move()
+
+        if (bug->isAlive1()) {  // check if bug is alive
+            bug->move();  // calls move()
+        }
     }
+    startFight();
 }
 
 // Function to convert integer direction to Direction enum
@@ -227,7 +242,7 @@ void Board::displayLifeHistory() {
     for (const auto& bug : bug_vector) {
 
         //displaying bug ID buy type and path
-        cout << bug->getId() << " " << bug->getType() << " Path: ";
+        cout << "\n"<<bug->getId() << " " << bug->getType() << " Path: ";
         const list<pair<int, int>>& path = bug->getPath(); //displays the bugs path
 
         //if path list isnt empty we loop through it using an iterator that will point at each position
@@ -277,5 +292,48 @@ void Board::displayAllCells() {
         }
 }
 
+bool Board::isGameOver() {
+    int bugsAlive = bug_vector.size(); //when game starts, all bugs are alive, so we get their count
 
+    //we loop through bug vector
+    for (Bug* bug : bug_vector) {
+        //check if bug isnt alive and decrement if a bug dies
+        if (!bug->isAlive1()) {
+            bugsAlive--;
+        }
+        //if bugsAlive equals to 1 then the game is over
+        if (bugsAlive == 1) {
+            return true;
+        }
+    }
+    // otherwise game continues
+    return false;
+}
+
+void Board::runSimulation() {
+    int round = 1; // start at round 1
+
+    //loop while game isnt over
+    while (!isGameOver()) {
+        //display the round and the bugs
+        cout << "\nROUND " << round << ":\n";
+        tapBugBoard(bug_vector);
+        displayAllBugs();
+
+        round++;
+    }
+
+    //getting the winner bug
+    Bug* winner = nullptr; //pointing to nothing for now
+
+    for (Bug* bug : bug_vector) {
+        //check if bug is alive  and sets it as winner
+        if (bug->isAlive1()) {
+            winner = bug;
+            break;
+        }
+    }
+    //displaying the winner
+    cout << "\nGame Over... " << "Winner is: " << winner->getType() << ", " << winner->getId() <<endl;
+}
 

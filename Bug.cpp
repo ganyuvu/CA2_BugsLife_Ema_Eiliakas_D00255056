@@ -83,9 +83,43 @@ bool Bug::isWayBlocked() {
     }
 }
 
+void Bug::fight(Bug *otherBug) {
+    // Checking if both bugs are in the same cell and if they are alive
+    if (this->getPosition() == otherBug->getPosition() && this->isAlive && otherBug->isAlive) {
+
+        // if first bug is larger in size, it will eat the otherBug
+        if (this->getSize() > otherBug->getSize()) {
+
+            this->setSize(this->getSize() + otherBug->getSize()); //adding the bugs sizes to simulate eat function
+            otherBug->setIsAlive(false); // Setting otherBug status as dead
+        }
+
+        //if Other bug is larger in size, it will eat the otherBug
+        else if (this->getSize() < otherBug->getSize()) {
+
+            otherBug->setSize(this->getSize() + otherBug->getSize()); //Adding the bugs sizes to simulate eat function
+            this->setIsAlive(false); // setting bug as dead
+        }
+
+        // if both bugs are equal in size we randomize the winner
+        else {
+            //50/50 chance to win
+            if (rand() % 2 == 0) {
+                this->setSize(this->getSize() + otherBug->getSize());
+                otherBug->setIsAlive(false);
+            }
+            else {
+                otherBug->setSize(this->getSize() + otherBug->getSize());
+                this->setIsAlive(false);
+            }
+        }
+    }
+}
+
 Bug::~Bug() {
     cout << "Destructor called.\n";
 }
+
 
 
 
