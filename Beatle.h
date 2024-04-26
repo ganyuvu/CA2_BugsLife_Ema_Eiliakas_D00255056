@@ -6,9 +6,6 @@
 
 class Beatle : public Bug{
 
-private:
-    bool skipTurn;
-
 public:
     void move() override;
 
@@ -16,8 +13,6 @@ public:
 
     Beatle(char type, int id, const pair<int, int> &position, Direction direction, int size, bool isAlive,
            const list<pair<int, int>> &path);
-
-    bool isSkipTurn() const;
 
 };
 

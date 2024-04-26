@@ -251,17 +251,31 @@ void Board::displayLifeHistory() {
 }
 
 void Board::displayAllCells() {
-
     //displaying all cells in grid
-    for (int i = 0; i < grid.size(); ++i) {
+        for (int i = 0; i < grid.size(); ++i) {
 
-        for (int j = 0; j < grid[i].size(); ++j) {
-            pair<int, int> cell(i, j);
-            cout << "\n(" << cell.first << "," << cell.second << "): ";
+            for (int j = 0; j < grid[i].size(); ++j) {
+
+                //storing and printing the cells
+                pair<int, int> cell(i, j);
+                cout << "\n(" << cell.first << "," << cell.second << "): ";
+
+                // Checking if a bug occupies a cell
+                bool cellOccupied = false;
+
+                for (Bug* bug : bug_vector) {
+                    //if bug position matches the cell, we print it out
+                    if (bug->getPosition() == cell) {
+                        cout << bug->getType() << ", " << bug->getId();
+                        cellOccupied = true;
+                    }
+                }
+                if (!cellOccupied) {
+                    cout << "Empty";
+                }
+            }
         }
-
-    }
-
-    //need to iterate through bug_vector and compare bug positions to cells
 }
+
+
 

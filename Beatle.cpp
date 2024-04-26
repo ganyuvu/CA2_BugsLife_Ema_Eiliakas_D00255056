@@ -20,22 +20,47 @@ void Beatle::move() {
         direction = static_cast<Direction>(1 + (rand() % 4));
     }
 
-    // we then update the position based on direction
-    switch (direction) {
-        case Direction::North:
-            newPos.second--;
-            break;
-        case Direction::East:
-            newPos.first++;
-            break;
-        case Direction::South:
-            newPos.second++;
-            break;
-        case Direction::West:
-            newPos.first--;
-            break;
-        default:
-            break;
+    //50% chance to move diagonally
+    if (rand() % 2 == 0) {
+        switch (direction) {
+            case Direction::North:
+                newPos.first--;
+                newPos.second--;
+                break;
+            case Direction::East:
+                newPos.first++;
+                newPos.second--;
+                break;
+            case Direction::South:
+                newPos.first++;
+                newPos.second++;
+                break;
+            case Direction::West:
+                newPos.first--;
+                newPos.second++;
+                break;
+            default:
+                break;
+        }
+    }
+    else {
+        // move as normal up/down
+        switch (direction) {
+            case Direction::North:
+                newPos.second--;
+                break;
+            case Direction::East:
+                newPos.first++;
+                break;
+            case Direction::South:
+                newPos.second++;
+                break;
+            case Direction::West:
+                newPos.first--;
+                break;
+            default:
+                break;
+        }
     }
 
     setPosition(newPos);
@@ -46,9 +71,6 @@ Beatle::~Beatle() {
     cout << "Destructor called.\n";
 }
 
-bool Beatle::isSkipTurn() const {
-    return skipTurn;
-}
 
 
 
