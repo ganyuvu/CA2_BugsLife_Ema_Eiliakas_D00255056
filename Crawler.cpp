@@ -13,7 +13,7 @@ void Crawler::move() {
     // This will keep looping until the path isnt blocked
     while (isWayBlocked()) {
         //this will set a random direction the bug will face
-        direction = static_cast<Direction>(1 + (rand() % 4));
+        direction = static_cast<Direction>((rand() % 4));
     }
 
     // we then update the position based on direction

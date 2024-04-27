@@ -1,5 +1,8 @@
 #include <iostream>
 #include "Board.h"
+#include <SFML/Graphics.hpp>
+
+void runSFML(Board& board);
 
 using namespace std;
 
@@ -18,7 +21,7 @@ int main() {
         cout << "4. Shake Board" << endl;
         cout << "5. Display Life History" << endl;
         cout << "6. Display all Cells" << endl;
-        cout << "7. Play Simulation" << endl;
+        cout << "7. Run Simulation (with SFML)" << endl;
         cout << "8. Exit" << endl;
         cin >> input;
 
@@ -54,7 +57,7 @@ int main() {
                 board.displayAllCells();
                 break;
             case 7:
-                board.runSimulation();
+                runSFML(board);
                 break;
             case 8:
                 board.lifeHistoryToFile("bugs_life_history_data_time.out");
@@ -67,5 +70,37 @@ int main() {
     }
 
     return 0;
+}
+
+//used notes from moodle and SFML website to help me with any sfml code
+//https://www.sfml-dev.org/tutorials/2.6/
+void runSFML(Board& board){
+
+    //render window 480 x 480
+    sf::RenderWindow window(sf::VideoMode(740, 500), "BUGS LIFE");
+
+    // drawing the initial state of the board
+    board.draw(window);
+    board.drawButton(window);
+    window.display();
+
+    while (window.isOpen())
+    {
+        //checking for event e.g closing the window
+        sf::Event event;
+        while (window.pollEvent(event))
+        {
+            if (event.type == sf::Event::Closed) {
+                window.close();
+            }
+            //when a mouse is clicked it will run the simulation
+            else if (event.type == sf::Event::MouseButtonReleased)
+            {
+                //this method will take in window and it will keep updating the window
+                board.runSimulation(window);
+
+            }
+        }
+    }
 }
 

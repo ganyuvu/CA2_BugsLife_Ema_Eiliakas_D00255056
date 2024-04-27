@@ -17,11 +17,11 @@ void Beatle::move() {
     // This will keep looping until the path isnt blocked
     while (isWayBlocked()) {
         //this will set a random direction the bug will face
-        direction = static_cast<Direction>(1 + (rand() % 4));
+        direction = static_cast<Direction>((rand() % 4));
     }
 
-    //50% chance to move diagonally
-    if (rand() % 2 == 0) {
+    //70/30 chance
+    if (rand() % 10 < 7) {
         switch (direction) {
             case Direction::North:
                 if (newPos.first > 0 && newPos.second > 0) { //keeping diagonal movement in bounds

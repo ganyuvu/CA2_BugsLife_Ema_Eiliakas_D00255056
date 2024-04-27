@@ -14,7 +14,21 @@
 using namespace std;
 
 Board::Board() {
-    grid.assign(10, vector<char>(10, '*'));
+
+    for (int row = 0; row < 10; row++) {
+        for (int column = 0; column < 10; column++) {
+            // creating a new RectangleShape with dimensions 48x48, this represent each cell
+            sf::RectangleShape rect(sf::Vector2f(48, 48));
+            //setting its colour to checkered, got this from moodle notes
+            rect.setFillColor((row+column)%2==0?sf::Color(117, 103, 83):sf::Color(255, 255, 224));
+            //giving each square an outline
+            rect.setOutlineColor(sf::Color(247, 233, 150));
+            rect.setOutlineThickness(2);
+            rect.setPosition(column*48, row*48);
+            //pushing this to the vector
+            boardSquares.push_back(rect);
+        }
+    }
 }
 
     void Board::getBugsFromFile(const std::string &fileName) {
@@ -182,7 +196,6 @@ void Board::displayAllBugs() {
 
         // checking if the bug is a hopper so we can display its hop length
         //dynamic_cast checks if bug class points to hopper class, if it does we can access hopper
-        //and hopper will be assigned a hopper pointer
         if (const Hopper* hopper = dynamic_cast<const Hopper*>(bug)) {
             printf("%10d\n", hopper->getHopLength());
         }
@@ -247,9 +260,9 @@ void Board::lifeHistoryToFile(const string& filename){
 
 void Board::displayAllCells() {
     //displaying all cells in grid
-        for (int i = 0; i < grid.size(); ++i) {
+        for (int i = 0; i < 10; ++i) {
 
-            for (int j = 0; j < grid[i].size(); ++j) {
+            for (int j = 0; j < 10; ++j) {
 
                 //storing and printing the cells
                 pair<int, int> cell(i, j);
@@ -290,7 +303,7 @@ bool Board::isGameOver() {
     return false;
 }
 
-void Board::runSimulation() {
+void Board::runSimulation(sf::RenderWindow& window) {
     int round = 1; // start at round 1
 
     //loop while game isnt over
@@ -301,6 +314,13 @@ void Board::runSimulation() {
         displayAllBugs();
 
         round++;
+
+        window.clear();
+        //drawing board with bugs and a button
+        draw(window);
+        drawButton(window);
+        window.display();
+
         //got this from: https://www.quora.com/How-would-you-calculate-a-delay-of-one-second-in-C
         sleep(1);
     }
@@ -318,4 +338,77 @@ void Board::runSimulation() {
     //displaying the winner
     cout << "\nGame Over... " << "Winner is: " << winner->getType() << ", " << winner->getId() <<endl;
 }
+
+void Board::draw(sf::RenderWindow &window) {
+    //Drawing board
+    for (sf::RectangleShape rect : boardSquares) {
+        window.draw(rect);
+    }
+
+    // Drawing the bugs
+    for (const Bug* bug : bug_vector) {
+
+        sf::Sprite sprite;
+        std::string texturePath;
+
+        // setting texturePath based on the bug's type
+        if (bug->getType() == 'H') {
+            texturePath = "textures/Hopper.png";
+        }
+        else if (bug->getType() == 'C') {
+            texturePath = "textures/Crawler.png";
+        }
+        else if (bug->getType() == 'B') {
+            texturePath = "textures/Beatle.png";
+        }
+
+        // loading the textures from file
+        sf::Texture texture;
+        //if it cant load, output error msg
+        if (!texture.loadFromFile(texturePath)) {
+            cout << "Failed to load texture" << endl;
+            return;
+        }
+
+        //then we set the texture for the bug sprite
+        sprite.setTexture(texture);
+        //setting the position of the sprite by getting bug position and multiplying by 48 since the squares are 48x48
+        sprite.setPosition(bug->getPosition().first * 48, bug->getPosition().second * 48);
+        window.draw(sprite);
+    }
+
+}
+void Board::drawButton(sf::RenderWindow &window) {
+    sf::Text text;
+
+    // Set the string to display
+    text.setString("Tap");
+
+    // Set the character size
+    text.setCharacterSize(50); // in pixels, not points!
+
+    // Set the color
+    text.setFillColor(sf::Color::Red);
+
+    // Set the position
+    text.setPosition(565, 200);
+
+    // Load a font from file
+    sf::Font font;
+    //if it cant load, output error msg
+    if (!font.loadFromFile("textures/arial.ttf")) {
+        cout << "Failed to load font" << endl;
+        return;
+    }
+
+    // Set the font
+    text.setFont(font);
+
+    // making the font bold
+    text.setStyle(sf::Text::Bold);
+
+    // Draw text
+    window.draw(text);
+}
+
 
