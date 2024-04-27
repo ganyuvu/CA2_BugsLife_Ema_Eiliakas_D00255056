@@ -9,6 +9,7 @@
 #include "Crawler.h"
 #include "Hopper.h"
 #include "Beatle.h"
+#include <unistd.h>
 
 using namespace std;
 
@@ -18,8 +19,9 @@ Board::Board() {
 
     void Board::getBugsFromFile(const std::string &fileName) {
 
-        ifstream file(fileName);
+        ifstream file(fileName); //opens file
 
+        //checks if file was opened
         if (!file.is_open()) {
             cout << "Unable to open file: " << fileName << endl;
             return;
@@ -192,16 +194,16 @@ void Board::displayAllBugs() {
 
 }
 
-//to do: implement display for bug getting eaten
-//to do:  write to a file
-void Board::displayLifeHistory() {
-    cout << "====Bug Life History====" << endl;
+string Board::displayLifeHistory() {
+    //using a stringStream to change all data to string, this will make storing the data to a file much easier
+    //learnt how to use here: https://www.softwaretestinghelp.com/stringstream-class-in-cpp/
+    stringstream lifeHistory;
 
     //loops through all bugs
     for (const auto& bug : bug_vector) {
 
         //displaying bug ID buy type and path
-        cout << "\n"<<bug->getId() << " " << bug->getType() << " Path: ";
+        lifeHistory << "\n"<<bug->getId() << " " << bug->getType() << " Path: ";
         const list<pair<int, int>>& path = bug->getPath(); //displays the bugs path
 
         //if path list isnt empty we loop through it using an iterator that will point at each position
@@ -210,18 +212,37 @@ void Board::displayLifeHistory() {
 
                 //making sure comma is only printed after the first path
                 if (i != path.begin()) {
-                    cout << ",";
+                    lifeHistory << ",";
                 }
-                cout << "(" << i->first << "," << i->second << ")";
+                lifeHistory << "(" << i->first << "," << i->second << ")";
             }
         }
         else {
-            cout << "No path taken";
+            lifeHistory << "No path taken";
         }
 
         // Then we finally display if the bug is alive or not
-        cout << ", " << (bug->isAlive1() ? "Alive" : "Dead") << endl;
+        lifeHistory << ", " << (bug->isAlive1() ? "Alive" : "Dead") << endl;
     }
+
+    return lifeHistory.str(); //returning all the data as string
+}
+
+void Board::lifeHistoryToFile(const string& filename){
+
+    ofstream outFile(filename); // opens file
+
+    // checking if it was opened
+    if (!outFile.is_open()) {
+        cout << "Unable to open file: " << filename << endl;
+        return;
+    }
+
+    // writing the life history from display method
+    outFile << displayLifeHistory();
+
+    // closing the file
+    outFile.close();
 }
 
 void Board::displayAllCells() {
@@ -280,6 +301,8 @@ void Board::runSimulation() {
         displayAllBugs();
 
         round++;
+        //got this from: https://www.quora.com/How-would-you-calculate-a-delay-of-one-second-in-C
+        sleep(1);
     }
 
     //getting the winner bug

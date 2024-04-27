@@ -46,7 +46,9 @@ int main() {
                 board.tapBugBoard(board.getBugVector());
                 break;
             case 5:
-                board.displayLifeHistory();
+                //since I used stringStream it doesnt output like cout, so i called the method using cout
+                cout << "====Bug Life History====" << endl;
+                cout << board.displayLifeHistory() << endl;
                 break;
             case 6:
                 board.displayAllCells();
@@ -55,6 +57,7 @@ int main() {
                 board.runSimulation();
                 break;
             case 8:
+                board.lifeHistoryToFile("bugs_life_history_data_time.out");
                 running = false; // Exit the loop
                 break;
             default:

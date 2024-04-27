@@ -27,11 +27,12 @@ public:
     void tapBugBoard(const vector<Bug*> & bug_vector);
     Direction intToDirection(int value);
     void getBugsFromFile(const string &fileName);
-    void displayLifeHistory();
+    string displayLifeHistory();
     void displayAllCells();
     void startFight();
     bool isGameOver();
     void runSimulation();
+    void lifeHistoryToFile(const string &filename);
 
     // method to get the bug vector (using it in main)
     vector<Bug*>& getBugVector() {
